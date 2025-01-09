@@ -2,11 +2,13 @@
 require_once 'vendor/autoload.php';
 
 // Connexion à la base de données MySQL
-$host = 'localhost:3307';
-$dbname = 'dailytrip';
+$host = 'localhost:3306';
+$dbname = 'dailytrip_0';
 $username = 'root';  // Remplacez par votre nom d'utilisateur
 $password = '';      // Remplacez par votre mot de passe
-$dsn = "mysql:host=$host;dbname=$dbname;charset=utf8mb4";
+$dsn = "mysql:host=$host;
+        dbname=$dbname;
+        charset=utf8mb4";
 
 try {
     $pdo = new PDO($dsn, $username, $password);
@@ -81,6 +83,7 @@ function insertReview($pdo, $faker) {
     $stmt = $pdo->prepare("INSERT INTO review (fullname, content, email, trip_id) VALUES (?, ?, ?, ?)");
     $stmt->execute([$faker->name, $faker->paragraph, $faker->email, $tripId]);
 }
+
 
 // Insérer des catégories
 insertCategory($pdo, $faker, $categories);
